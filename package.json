@@ -32,7 +32,6 @@
     "micro": "^9.0.1",
     "micro-dev": "^1.4.0",
     "micro-redirect": "^1.0.0",
-    "microrouter": "^3.0.0",
-    "ramda": "^0.25.0"
+    "microrouter": "^3.0.0"
   }
 }

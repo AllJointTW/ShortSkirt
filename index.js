@@ -1,34 +1,27 @@
-const { send, json } = require('micro')
+const { json, send } = require('micro')
 const { router, get, post } = require('microrouter')
 const redirect = require('micro-redirect')
-const { curry } = require('ramda')
-const urls = {}
-const short = async (req, res) => {
-  const { url } = await json(req)
-  let shortURL = urls[url]
+const memory = {}
+const makeRandomId = (length) => Math.random().toString(36).substring(2, length + 2)
+const saveIn = (cache, id, skirt) => {
+  cache[id] = skirt
+  return id
+}
+const getFrom = (cache, id) => cache[id]
+const shorten = async (req, res) => {
+  const { skirt } = await json(req)
 
-  // Check Exist
-  if (shortURL) { // Yes
-    send(res, 200, shortURL)
-  }
-  // No, Make A New One
-  const skirt = Math.random().toString(36).substring(7)
-
-  shortURL = skirt
-  urls[skirt] = url
-  send(res, 200, shortURL)
+  return saveIn(memory, makeRandomId(7), skirt)
 }
 const pullUp = (req, res) => {
   const { skirt } = req.params
-  const statusCode = 302
-  const location = urls[skirt]
 
-  redirect(res, statusCode, location)
+  redirect(res, 302, getFrom(memory, skirt))
 }
-const notfound = (req, res) => send(res, 404, 'Not Found')
+const notFound = (req, res) => send(res, 404, 'Not Found')
 
 module.exports = router(
-  post('/', short),
-  get('/:skirt', pullUp),
-  get('/*', notfound)
+  post('/shorten', shorten),
+  get('/pull-up/:skirt', pullUp),
+  get('/*', notFound)
 )
