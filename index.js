@@ -1,0 +1,1 @@
+module.exports = () => 'Welcome to Short Skirt'

@@ -1,0 +1,33 @@
+{
+  "name": "short-skirt",
+  "version": "0.0.1",
+  "description": "Make your url feel like girl's short skirt 😍😍.",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">= 8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllJointTW/ShortSkirt.git"
+  },
+  "keywords": [
+    "url",
+    "link",
+    "simplify",
+    "shortener",
+    "alljoint"
+  ],
+  "author": "張子晏(TZU-YEN, CHANG) <try_love_tom@icloud.com, try_love_tom@alljoint.tw>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AllJointTW/ShortSkirt/issues"
+  },
+  "homepage": "https://github.com/AllJointTW/ShortSkirt#readme",
+  "dependencies": {
+    "micro": "^9.0.1"
+  }
+}
